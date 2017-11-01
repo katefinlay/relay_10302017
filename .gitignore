@@ -43,3 +43,11 @@ prep
 server-dist
 client-dist
 schema.graphql
+/client/js/components/__generated__/carFormPageQuery.graphql.js
+/client/js/components/__generated__/paginatedCarTableQuery.graphql.js
+/client/js/components/__generated__/paginatedCarTable_viewer.graphql.js
+/client/js/components/__generated__/carTableHome_viewer.graphql.js
+/client/js/components/__generated__/carTablePageQuery.graphql.js
+/package-lock.json
+/client/js/components/__generated__/carFormHome_viewer.graphql.js
+/.idea

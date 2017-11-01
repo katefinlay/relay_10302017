@@ -20,6 +20,11 @@ export class CarViewRow extends React.Component {
 
 export const CarViewRowContainer = createFragmentContainer(CarViewRow, graphql`
   fragment carViewRow_car on Car {
-    id make model year color price
+    id 
+    make 
+    model 
+    year 
+    color 
+    price
   }
 `);

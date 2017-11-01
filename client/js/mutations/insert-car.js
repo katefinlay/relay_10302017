@@ -26,20 +26,6 @@ mutation insertCarMutation($input: InsertCarInput!) {
 }
 `;
 
-// performs the actual update to the graph on the client
-const sharedUpdater = (source, carEdge, viewerId, totalCount) => {
-
-  const viewerProxy = source.get(viewerId);
-  const conn = ConnectionHandler.getConnection(viewerProxy, 'CarTable_cars');
-  ConnectionHandler.insertEdgeAfter(conn, carEdge);
-
-  // update the total count
-  if (!totalCount) {
-    totalCount = conn.getValue('totalCount') + 1;
-  }
-  conn.setValue(totalCount, 'totalCount');
-};
-
 let clientMutationId = 0;
 
 export const insertCar = (environment, viewerId, car) => {
@@ -69,7 +55,6 @@ export const insertCar = (environment, viewerId, car) => {
         const totalCount = payload.getLinkedRecord('viewer')
           .getLinkedRecord('cars').getValue('totalCount');
 
-        sharedUpdater(source, carEdge, viewerId, totalCount);
       },
 
       // runs before the server operation, and makes it appear as though the
@@ -91,7 +76,6 @@ export const insertCar = (environment, viewerId, car) => {
         const carEdge = source.create(edgeId, 'carEdge');
         carEdge.setLinkedRecord(node, 'node');
 
-        sharedUpdater(source, carEdge, viewerId);
       },
 
       // the success function when mutation is successful
