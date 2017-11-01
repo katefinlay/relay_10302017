@@ -17,6 +17,8 @@ export class CarForm extends React.Component {
   });
 
   onChange = e => {
+    console.log(`a ${e.target.name} b ${e.target.value} c ${e.target.type} `);
+
     this.setState({
       [ e.target.name ]: e.target.type === 'number'
         ? Number(e.target.value)
@@ -35,19 +37,21 @@ export class CarForm extends React.Component {
     return <form>
       <div>
       <label htmlFor="select-make">Make</label>
-        <select value="Make" id="select-make" onChange={this.onChange}>
+        <select value="Make" id="select-make" onChange={this.onChange} value={this.state.make} name="make" >
+        <option key={0} value="" />
           {this.props.viewer.carMakes.edges.map(
             ({ node: make }) => 
-            <option value={make.value}>{make.value}</option>
+            <option key={make.id} value={make.value} >{make.value}</option>
           )}
         </select>
       </div>
       <div>
       <label htmlFor="select-model">Model</label>
-        <select value="Model" id="select-model" onChange={this.onChange}>
+        <select value="Model" id="select-model" value={this.state.model} name="model" onChange={this.onChange}>
+        <option key={0} value="" />
           {this.props.viewer.carModels.edges.map(
             ({ node: model }) => 
-            <option value={model.value}>{model.value}</option>
+            <option key={model.id} value={model.value} >{model.value}</option>
           )}
         </select>
       </div>
@@ -58,10 +62,11 @@ export class CarForm extends React.Component {
       </div>
       <div>
       <label htmlFor="select-color">Color</label>
-        <select value="Color" id="select-color" onChange={this.onChange}>
+        <select value="Color" id="select-color" value={this.state.color} name="color" onChange={this.onChange}>
+        <option key={0} value=""/>
           {this.props.viewer.carColors.edges.map(
             ({ node: color }) => 
-            <option value={color.value}>{color.value}</option>
+            <option key={color.id} value={color.value} >{color.value}</option>
           )}
         </select>
       </div>
