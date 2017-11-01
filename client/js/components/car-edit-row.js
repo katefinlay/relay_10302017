@@ -5,7 +5,7 @@ export class CarEditRow extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = props;
+    this.state = Object.assign({}, this.props);
   }
 
     onChange = e => {
@@ -17,7 +17,9 @@ export class CarEditRow extends React.Component {
     };
 
     restoreState = () => {
-      this.state = this.props;
+
+      this.setState({ ...this.props });
+      this.props.onDone();
     };
 
     render() {
@@ -28,8 +30,8 @@ export class CarEditRow extends React.Component {
         <td><input type="text" id="color-input" name="color" value={this.state.color} onChange={this.onChange} /></td>
         <td><input type="number" id="price-input" name="price" value={this.state.price} onChange={this.onChange} /></td>
         <td>
-          <input type="button" onClick={this.restoreState}>Cancel</input>
-          {/*<input type="button" onClick={() => this.props.onUpdateCar(this.props.car.id)}>Save</input>*/}
+          <button type="button" onClick={this.restoreState}>Cancel</button>
+          {/*<button type="button" onClick={() => this.props.onUpdateCar(this.props.car.id)}>Save</button>*/}
         </td>
       </tr>;
     }

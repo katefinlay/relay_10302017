@@ -1,9 +1,7 @@
 import React from 'react';
 import { createPaginationContainer, graphql } from 'react-relay';
 
-import { CarViewRowContainer } from './car-view-row';
-
-import { CarEditRowContainer } from './car-edit-row';
+import { CarRowContainer } from './car-row';
 
 export class CarTable extends React.Component {
 
@@ -63,17 +61,9 @@ export class CarTable extends React.Component {
       this.props.onCreateCar();
     };
 
-    editCar = () => {
-      this.renderRow('edit');
-    };
 
     renderRow = (car, type) => {
-      if (type === 'edit') {
-        return <CarEditRowContainer key={car.id} car={car} /> ;
-      }
-      else {
-        return <CarViewRowContainer key={car.id} car={car} onDeleteCar={this.props.onDeleteCar} onEditCar={this.editCar}/>;
-      }
+      return <CarRowContainer key={car.id} car={car} onDeleteCar={this.props.onDeleteCar} />
     }
 
     render() {
@@ -158,7 +148,7 @@ export const PaginatedCarTableContainer = createPaginationContainer(
         edges {
           node {
             id
-            ...carViewRow_car
+            ...carRow_car
           }
           cursor
         }
