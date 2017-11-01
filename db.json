@@ -269,5 +269,47 @@
       "authorId": 1,
       "id": 17
     }
+  ],
+  "carMakes": [
+    {
+      "id": 1,
+      "value": "Honda"
+    },
+    {
+      "id": 2,
+      "value": "Nissan"
+    },
+    {
+      "id": 3,
+      "value": "Toyota"
+    }
+  ],
+  "carModels": [
+    {
+      "id": 1,
+      "value": "Civic"
+    },
+    {
+      "id": 2,
+      "value": "Accord"
+    },
+    {
+      "id": 3,
+      "value": "Corolla"
+    }
+  ],
+  "carColors": [
+    {
+      "id": 1,
+      "value": "Red"
+    },
+    {
+      "id": 2,
+      "value": "Black"
+    },
+    {
+      "id": 3,
+      "value": "White"
+    }
   ]
 }
