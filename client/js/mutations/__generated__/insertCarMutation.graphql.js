@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1c6248863a66761b2b8088b528d56eee
+ * @relayHash f718a77a79d7e67717407d4dab61f24f
  */
 
 /* eslint-disable */
@@ -28,6 +28,7 @@ export type insertCarMutationResponse = {|
       +id: string;
       +cars: ?{|
         +totalCount: ?number;
+        +totalPrice: ?number;
       |};
     |};
     +carEdge: ?{|
@@ -55,6 +56,7 @@ mutation insertCarMutation(
       id
       cars {
         totalCount
+        totalPrice
       }
     }
     carEdge {
@@ -129,6 +131,13 @@ const batch /*: ConcreteBatch*/ = {
                     "alias": null,
                     "args": null,
                     "name": "totalCount",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "totalPrice",
                     "storageKey": null
                   }
                 ],
@@ -275,6 +284,13 @@ const batch /*: ConcreteBatch*/ = {
                     "args": null,
                     "name": "totalCount",
                     "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "totalPrice",
+                    "storageKey": null
                   }
                 ],
                 "storageKey": null
@@ -358,7 +374,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "mutation insertCarMutation(\n  $input: InsertCarInput!\n) {\n  insertCar(input: $input) {\n    viewer {\n      id\n      cars {\n        totalCount\n      }\n    }\n    carEdge {\n      cursor\n      node {\n        id\n        make\n        model\n        year\n        color\n        price\n      }\n    }\n  }\n}\n"
+  "text": "mutation insertCarMutation(\n  $input: InsertCarInput!\n) {\n  insertCar(input: $input) {\n    viewer {\n      id\n      cars {\n        totalCount\n        totalPrice\n      }\n    }\n    carEdge {\n      cursor\n      node {\n        id\n        make\n        model\n        year\n        color\n        price\n      }\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

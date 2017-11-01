@@ -1,8 +1,18 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 
+import { CarEditRowContainer } from './car-edit-row';
+
 export class CarViewRow extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isEditing : false
+    };
+  }
+  
   render() {
     return <tr>
       <td>{this.props.car.make}</td>
@@ -13,6 +23,7 @@ export class CarViewRow extends React.Component {
       <td>
         <button type="button" onClick={() =>
           this.props.onDeleteCar(this.props.car.id)}>Delete</button>
+        <button type="button" onClick={this.props.onEditCar}>Edit</button>
       </td>
     </tr>;
   }

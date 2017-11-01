@@ -9,6 +9,7 @@ mutation insertCarMutation($input: InsertCarInput!) {
       id
       cars {
         totalCount
+        totalPrice
       }
     }
     carEdge {
@@ -54,6 +55,8 @@ export const insertCar = (environment, viewerId, car) => {
         const carEdge = payload.getLinkedRecord('carEdge');
         const totalCount = payload.getLinkedRecord('viewer')
           .getLinkedRecord('cars').getValue('totalCount');
+        const totalPrice = payload.getLinkedRecord('viewer')
+          .getLinkedRecord('cars').getValue('totalPrice');
 
       },
 

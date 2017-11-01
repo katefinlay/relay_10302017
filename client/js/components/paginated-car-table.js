@@ -1,7 +1,7 @@
 import React from 'react';
 import { createPaginationContainer, graphql } from 'react-relay';
 
-import { CarViewRowContainer } from './car-view-row';
+import { CarRowContainer } from './car-row';
 
 export class CarTable extends React.Component {
 
@@ -59,6 +59,11 @@ export class CarTable extends React.Component {
 
     createCar = () => {
       this.props.onCreateCar();
+    };
+
+
+    renderRow = (car, type) => {
+      return <CarRowContainer key={car.id} car={car} onDeleteCar={this.props.onDeleteCar} />
     }
 
     render() {
@@ -67,11 +72,11 @@ export class CarTable extends React.Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Description</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Year</th>
               <th>Color</th>
-              <th>Size</th>
-              <th>Quantity</th>
+              <th>Price</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -86,8 +91,7 @@ export class CarTable extends React.Component {
                 <tr><td colSpan="6">There are no cars.</td></tr>;
               } else {
                 carEdges.slice(startIndex, endIndex).map( ({ node: car }) => do {
-                  <CarViewRowContainer key={car.id} car={car}
-                    onDeleteCar={this.props.onDeleteCar} />;
+                  this.renderRow(car);
                 });
               }
             }}
@@ -120,6 +124,9 @@ export class CarTable extends React.Component {
                 </div>
               </td>
             </tr>
+            <tr>
+              <td colSpan="6">Total Price: {this.props.viewer.cars.totalPrice}</td>
+            </tr>
           </tfoot>
         </table>
       </div>;
@@ -141,10 +148,11 @@ export const PaginatedCarTableContainer = createPaginationContainer(
         edges {
           node {
             id
-            ...carViewRow_car
+            ...carRow_car
           }
           cursor
         }
+        totalPrice
         totalCount
         pageInfo {
           startCursor
@@ -159,7 +167,7 @@ export const PaginatedCarTableContainer = createPaginationContainer(
     getConnectionFromProps: (props) => {
       return props.viewer && props.viewer.cars;
     },
-    getFragmentVariables: (prevVars, totalCount) => {
+    getFragmentVariables: (prevVars, totalCount) => { //??
       return {
         ...prevVars,
         count: totalCount,

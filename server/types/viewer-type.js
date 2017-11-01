@@ -56,8 +56,12 @@ export const viewerType = new GraphQLObjectType({
           const carModels = cars.map(c => Object.assign(new Car(), c));
           const conn = connectionFromArray(carModels, args);
           conn.totalCount = carModels.length;
-          return conn;
 
+          const totalPrice = carModels.reduce((acc, { price }) => acc + price, 0);
+          console.log(`price: ${totalPrice}`);
+          conn.totalPrice = totalPrice;
+          
+          return conn;
         });
       },
     },
