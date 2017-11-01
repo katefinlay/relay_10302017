@@ -13,6 +13,8 @@ export class CarViewRow extends React.Component {
       <td>
         <button type="button" onClick={() =>
           this.props.onDeleteCar(this.props.car.id)}>Delete</button>
+        <button type="button" onClick={() =>
+          this.props.onEditCar(this.props.car.id)}>Edit</button>
       </td>
     </tr>;
   }

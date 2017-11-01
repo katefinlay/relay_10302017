@@ -3,6 +3,8 @@ import { createPaginationContainer, graphql } from 'react-relay';
 
 import { CarViewRowContainer } from './car-view-row';
 
+import { CarEditRowContainer } from './car-edit-row';
+
 export class CarTable extends React.Component {
 
   constructor(props) {
@@ -59,6 +61,19 @@ export class CarTable extends React.Component {
 
     createCar = () => {
       this.props.onCreateCar();
+    };
+
+    editCar = () => {
+      this.renderRow('edit');
+    };
+
+    renderRow = (car, type) => {
+      if (type === 'edit') {
+        return <CarEditRowContainer key={car.id} car={car} /> ;
+      }
+      else {
+        return <CarViewRowContainer key={car.id} car={car} onDeleteCar={this.props.onDeleteCar} onEditCar={this.editCar}/>;
+      }
     }
 
     render() {
@@ -86,8 +101,7 @@ export class CarTable extends React.Component {
                 <tr><td colSpan="6">There are no cars.</td></tr>;
               } else {
                 carEdges.slice(startIndex, endIndex).map( ({ node: car }) => do {
-                  <CarViewRowContainer key={car.id} car={car}
-                    onDeleteCar={this.props.onDeleteCar} />;
+                  this.renderRow(car);
                 });
               }
             }}

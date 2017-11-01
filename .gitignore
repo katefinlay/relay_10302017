@@ -51,3 +51,5 @@ schema.graphql
 /package-lock.json
 /client/js/components/__generated__/carFormHome_viewer.graphql.js
 /.idea
+/client/js/mutations/__generated__/updateCarMutation.graphql.js
+/client/js/components/__generated__/carEditRow_car.graphql.js
