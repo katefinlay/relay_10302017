@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { CarForm } from './car-form';
+import { CarFormContainer } from './car-form';
 
 import { insertCar as relayInsertCar } from '../mutations/insert-car';
 
@@ -15,7 +15,8 @@ export class CarFormHome extends React.Component {
     };
 
     render() {
-      return <CarForm
+      return <CarFormContainer
+        viewer={this.props.viewer}
         onSubmitCar={this.reactInsertCar}
         onShowCarTable={this.props.onShowCarTable} />;
     }
@@ -26,6 +27,7 @@ export const CarFormHomeContainer = createFragmentContainer(
   CarFormHome, graphql`
     fragment carFormHome_viewer on Viewer {
       id
+      ...carForm_viewer
     }
   `
 );
