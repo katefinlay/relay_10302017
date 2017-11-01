@@ -120,6 +120,9 @@ export class CarTable extends React.Component {
                 </div>
               </td>
             </tr>
+            <tr>
+              <td colSpan="6">Total Price: {this.props.viewer.cars.totalPrice}</td>
+            </tr>
           </tfoot>
         </table>
       </div>;
@@ -145,6 +148,7 @@ export const PaginatedCarTableContainer = createPaginationContainer(
           }
           cursor
         }
+        totalPrice
         totalCount
         pageInfo {
           startCursor
@@ -159,7 +163,7 @@ export const PaginatedCarTableContainer = createPaginationContainer(
     getConnectionFromProps: (props) => {
       return props.viewer && props.viewer.cars;
     },
-    getFragmentVariables: (prevVars, totalCount) => {
+    getFragmentVariables: (prevVars, totalCount) => { //??
       return {
         ...prevVars,
         count: totalCount,

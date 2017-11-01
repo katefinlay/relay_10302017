@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c33e2ee7b4a2ea02e14e5c5c345a6354
+ * @relayHash d8f195f9a0bcb6f499d835d51cc1a525
  */
 
 /* eslint-disable */
@@ -22,6 +22,7 @@ export type deleteCarMutationResponse = {|
       +id: string;
       +cars: ?{|
         +totalCount: ?number;
+        +totalPrice: ?number;
       |};
     |};
     +car: ?{|
@@ -46,6 +47,7 @@ mutation deleteCarMutation(
       id
       cars {
         totalCount
+        totalPrice
       }
     }
     car {
@@ -117,6 +119,13 @@ const batch /*: ConcreteBatch*/ = {
                     "alias": null,
                     "args": null,
                     "name": "totalCount",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "totalPrice",
                     "storageKey": null
                   }
                 ],
@@ -245,6 +254,13 @@ const batch /*: ConcreteBatch*/ = {
                     "args": null,
                     "name": "totalCount",
                     "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "totalPrice",
+                    "storageKey": null
                   }
                 ],
                 "storageKey": null
@@ -310,7 +326,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "mutation deleteCarMutation(\n  $input: DeleteCarInput!\n) {\n  deleteCar(input: $input) {\n    viewer {\n      id\n      cars {\n        totalCount\n      }\n    }\n    car {\n      id\n      make\n      model\n      year\n      color\n      price\n    }\n  }\n}\n"
+  "text": "mutation deleteCarMutation(\n  $input: DeleteCarInput!\n) {\n  deleteCar(input: $input) {\n    viewer {\n      id\n      cars {\n        totalCount\n        totalPrice\n      }\n    }\n    car {\n      id\n      make\n      model\n      year\n      color\n      price\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

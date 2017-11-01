@@ -15,6 +15,9 @@ export const {
     totalCount: {
       type: GraphQLInt,
     },
+    totalPrice: {
+      type: GraphQLInt,
+    },
   }),
 
 });
